@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Favorites Github Users</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Lista de Usuarios de Github</h1>
+      <main>
+        <section class="card">
+          <input v-on:keyup.enter="doSearch" v-model="query" type="text" placeholder="github username..." />
+          <article class="animate__bounceIn">
+            <h2>{{user.login}} ({{user.location ? user.location : 'Pais Desconocido'}})</h2>
+            <img class="avatar" v-bind:src="user.avatar_url" alt="imagen de perfil de github" />
+            <div class="username"></div>
+            <p class="description">{{user.bio}}</p>
+            <div class="last_activity"></div>
+            <ul class="list-follow">
+              <li>Seguidores <b>{{user.followers}}</b></li>
+              <li>Siguiendo <b>{{user.following}}</b></li>
+            </ul>
+
+            <ul class="list-action">
+              <li>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  x="0px" 
+                  y="0px"
+                  width="32" 
+                  height="32"
+                  viewBox="0 0 172 172"
+                  class="favorite-btn"
+                  style=" fill:#000000;"
+                >
+                  <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#f1c40f"><path d="M169.17813,66.76234c-0.31745,-0.96659 -1.15351,-1.67106 -2.15994,-1.81997l-54.30443,-8.02111l-24.29661,-50.03319c-0.50177,-0.85933 -1.42204,-1.38764 -2.41714,-1.38764c-0.99509,0 -1.91537,0.52832 -2.41714,1.38764l-24.29527,50.03319l-54.30497,8.02111c-1.00733,0.14855 -1.84421,0.85364 -2.16155,1.82115c-0.31734,0.96751 -0.06066,2.03128 0.663,2.7476l39.32162,38.95854l-9.28424,55.02038c-0.17012,1.01027 0.24894,2.02937 1.08053,2.62773c0.83159,0.59836 1.93104,0.67188 2.83489,0.18957l48.56313,-25.94969l48.56124,25.94969c0.90406,0.48401 2.00476,0.41136 2.83736,-0.18727c0.8326,-0.59864 1.25196,-1.61891 1.08102,-2.63003l-9.28531,-55.02038l39.32296,-38.95934c0.72236,-0.71724 0.97811,-1.78072 0.66086,-2.74797z"></path></g></g>
+                </svg>
+              </li>
+              <li>
+                <img class="delete-btn" src="https://img.icons8.com/external-tal-revivo-fresh-tal-revivo/28/000000/external-delete-star-rating-from-music-feedback-website-votes-fresh-tal-revivo.png"/>
+              </li>
+            </ul>
+            <ul class="list-extra">
+              <li v-show="user.twitter_username">
+                <img class="icon-twitter" src="https://img.icons8.com/ios/50/000000/twitter--v1.png"/>
+                <b>
+                  <a v-bind:href="'https://twitter.com/' + user.twitter_username" target="_blank">
+                    {{user.twitter_username}}
+                  </a>
+                </b>
+              </li>
+              <li>
+                <img class="icon-homepage" src="https://img.icons8.com/ios/50/000000/github--v1.png"/>
+                <b>
+                  <a v-bind:href="user.html_url" target="_blank">Github</a>
+                </b>
+              </li>
+
+            </ul>
+          </article>
+          <div class="error">
+            <h3 class="animate__bounceIn" v-show="error">{{error}}</h3> 
+          </div>
+          <div class="loading" v-show="searching">
+            <p>Cargando...</p>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="/main.js"></script>
+  </body>
+</html>
