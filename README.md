@@ -6,3 +6,4 @@ Buscador de usuarios con la API de Github creada con Vuejs
 - [ ] Guardar un usuarios
 - [ ] Eliminar un usuarios
 - [ ] Priorizar busqueda en favoritos
+- [ ] Mejorar mensaje de loading
